@@ -20,7 +20,7 @@ files = files2.copy()
 
 #%%
 y = np.empty((0,100))
-
+x = np.empty((0,2))
 #%% 进入一个文件夹下
 for i in range(len(files)):
    
@@ -61,10 +61,18 @@ for i in range(len(files)):
                     
         y = np.append(y, one_file_data, axis=0)
 
+        # 获取x
+        one_x = np.array([[float(subsubfolder[5:7]), float(subsubfolder[10:13])]])
+        print()
+        print(one_x)
+        print()
+        one_x = one_x.reshape((-1,2))
+        x = np.append(x, one_x, axis=0)
 #%%
-# 变成迭代器
-np.save('y_data', y)
-#遍历行
+data = np.append(x,y,axis=1)
+np.save('y_data.npy', y)
+np.save('x_data.npy', x)
+np.save('data.npy', data)
 
 
 
